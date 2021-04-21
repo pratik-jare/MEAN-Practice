@@ -1,0 +1,39 @@
+<!-- <mat-accordion multi="true" *ngIf="users.length > 0">
+    <mat-expansion-panel *ngFor="let user of users">
+        <mat-expansion-panel-header>
+            {{ user.email }}
+        </mat-expansion-panel-header>
+        <p>{{ user.password }}</p>
+    </mat-expansion-panel>
+</mat-accordion>
+<br>
+<mat-paginator [length]="totalusers" [pageSize]="usersPerPage" [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangePage($event)" *ngIf="users.length > 0"></mat-paginator> 
+
+<p class="info-text mat-body-1" *ngIf="users.length <= 0">No users added yet!</p> -->
+
+
+<div class="mat-elevation-z8" *ngIf="users.length > 0" style="width: 100%;">
+    <table mat-table [dataSource]="dataSource" style="width: 100%;">
+
+        <!-- email Column -->
+        <ng-container matColumnDef="email" style="width: 100%;">
+            <th mat-header-cell style="width: 50%;" *matHeaderCellDef> Email </th>
+            <td mat-cell style="width: 50%;" *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- password Column -->
+        <ng-container matColumnDef="password" style="width: 100%;">
+            <th mat-header-cell style="width: 50%;" *matHeaderCellDef> Password </th>
+            <td mat-cell style="width: 50%;" *matCellDef="let element"> {{element.password}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="totalusers" [pageSize]="usersPerPage" [pageSizeOptions]="pageSizeOptions"
+        (page)="onChangePage($event)" *ngIf="users.length > 0"></mat-paginator>
+</div>
+
+<p class="info-text mat-body-1" *ngIf="users.length <= 0">No users added yet!</p>
